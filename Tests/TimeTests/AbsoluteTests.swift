@@ -14,6 +14,7 @@ class AbsoluteTests: XCTestCase {
         ("testLastMinuteOfHour", testLastMinuteOfHour),
         ("testLastSecondOfMinute", testLastSecondOfMinute),
         ("testAddingComponents", testAddingComponents),
+        ("testCodableAbsolute", testCodableAbsolute)
     ]
     
     func testInitializingGregorianDateWithoutEraSucceeds() {
@@ -87,5 +88,17 @@ class AbsoluteTests: XCTestCase {
         XCTAssertEqual(todayAt12.absoluteDay, today)
         XCTAssertEqual(todayAt12.hour, 12)
         XCTAssertEqual(todayAt12.minute, 0)
+    }
+    
+    func testCodableAbsolute() throws {
+        let today: Absolute<Day> = Clocks.system.today()
+        let encodedData = try JSONEncoder().encode(today)
+        let decodedToday = try JSONDecoder().decode(Absolute<Day>.self, from: encodedData)
+        
+        XCTAssertEqual(today.dateComponents, decodedToday.dateComponents)
+        XCTAssertEqual(today.era, decodedToday.era)
+        XCTAssertEqual(today.year, decodedToday.year)
+        XCTAssertEqual(today.month, decodedToday.month)
+        XCTAssertEqual(today.day, decodedToday.day)
     }
 }

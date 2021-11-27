@@ -133,3 +133,7 @@ extension TimePeriod: CustomStringConvertible {
     }
     
 }
+
+extension TimePeriod: Codable {
+    
+}

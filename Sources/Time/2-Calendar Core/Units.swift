@@ -15,7 +15,7 @@ import Foundation
  
  */
 
-public protocol Unit {
+public protocol Unit: Codable {
     static var closer: ProtocolCloser<Self> { get }
     static var component: Calendar.Component { get }
 }

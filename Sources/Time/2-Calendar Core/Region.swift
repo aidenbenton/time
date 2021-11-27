@@ -13,7 +13,7 @@ import Foundation
 /// - a `Calendar` value, which describes their preferred system for measuring time
 /// - a `TimeZone` value, which describes their local application of the calendar
 /// - a `Locale` value, which describes their preferences around formatting values
-public struct Region: Hashable {
+public struct Region: Hashable, Codable {
     
     /// A snapshot of the user's current `Region`.
     public static let current = Region(calendar: .current, timeZone: .current, locale: .current)
